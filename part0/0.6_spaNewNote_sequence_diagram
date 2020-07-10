@@ -1,0 +1,15 @@
+title SPA New Note
+
+Browser->Server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over Server: 
+Content-Type: JSON (with note and timestamp)
+{content: "nani?", date: "2020-07-10T16:08:25.485Z"}
+end note
+
+Server-->Browser: 201 Created
+
+note over Browser: 
+Browser executes the event handler
+that renders notes to display
+end note
