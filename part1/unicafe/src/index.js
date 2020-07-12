@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
+const GOOD_VALUE = 1;
+const NEUTRAL_VALUE = 0;
+const BAD_VALUE = -1;
+
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>;
 
 const App = () => {
@@ -15,6 +19,11 @@ const App = () => {
 
   const handleBadClick = () => setBad(bad + 1);
 
+  const calcAllClicks = () => good + neutral + bad;
+
+  const calcAverageClicks = () =>
+    (good * GOOD_VALUE + neutral * NEUTRAL_VALUE + bad * BAD_VALUE) / calcAllClicks();
+
   return (
     <div>
       <h1>give feedback</h1>
@@ -25,6 +34,9 @@ const App = () => {
       <div>good {good}</div>
       <div>neutral {neutral}</div>
       <div>bad {bad}</div>
+      <div>all {calcAllClicks()}</div>
+      <div>average {calcAverageClicks()}</div>
+      <div>positive {(good / calcAllClicks()) * 100} %</div>
     </div>
   );
 };
