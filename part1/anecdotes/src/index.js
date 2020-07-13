@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-//const RandomIndex = ({ anecdotes }) => Math.floor(Math.random() * anecdotes.length);
+const Button = ({ text, isClicked }) => <button onClick={isClicked}>{text}</button>;
+
+const Votes = () => Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf, 0);
+
+const RandomIndex = () => Math.floor(Math.random() * anecdotes.length);
 
 const App = ({ anecdotes }) => {
   const [selected, setSelected] = useState(0);
+  const [volted, setVolted] = useState(Votes());
 
   return (
     <div>
-      <div>{anecdotes[selected]}</div>
-      <button onClick={() => setSelected(Math.floor(Math.random() * anecdotes.length))}>
-        next anecdote
-      </button>
+      <p>{anecdotes[selected]}</p>
+      <p>has {volted[selected]} votes</p>
+      <Button
+        text={'vote'}
+        isClicked={() => {
+          const voltUpdate = [...volted];
+          voltUpdate[selected] += 1;
+          setVolted(voltUpdate);
+        }}
+      />
+      <Button text={'next anecdote'} isClicked={() => setSelected(RandomIndex())} />
     </div>
   );
 };

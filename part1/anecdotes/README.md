@@ -12,3 +12,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## Step 1
 
 Initiate Anecdotes app, expand it by adding a button that can be clicked to display a _random_ anecdote from the field of software engineering (Google how to generate random numbers in JavaScript).
+
+## Step 2
+
+Expand the application with _vote_ for the displayed anecdote. Store the votes of each anecdote into an array.
