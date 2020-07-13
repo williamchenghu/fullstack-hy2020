@@ -8,9 +8,10 @@ const BAD_VALUE = -1;
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>;
 
 const Statistic = ({ text, value }) => (
-  <div key={text}>
-    {text}: {value}
-  </div>
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
 );
 const Statistics = ({ good, neutral, bad }) => {
   if (good === 0 && bad === 0 && neutral === 0) {
@@ -18,17 +19,22 @@ const Statistics = ({ good, neutral, bad }) => {
   }
   return (
     <div>
-      <Statistic text="good" value={good} />
-      <Statistic text="neutral" value={neutral} />
-      <Statistic text="bad" value={bad} />
-      <Statistic text="all" value={good + neutral + bad} />
-      <Statistic
-        text="average"
-        value={
-          (good * GOOD_VALUE + neutral * NEUTRAL_VALUE + bad * BAD_VALUE) / (good + neutral + bad)
-        }
-      />
-      <Statistic text="positive" value={`${(good / (good + neutral + bad)) * 100} %`} />
+      <table>
+        <tbody>
+          <Statistic text="good" value={good} />
+          <Statistic text="neutral" value={neutral} />
+          <Statistic text="bad" value={bad} />
+          <Statistic text="all" value={good + neutral + bad} />
+          <Statistic
+            text="average"
+            value={
+              (good * GOOD_VALUE + neutral * NEUTRAL_VALUE + bad * BAD_VALUE) /
+              (good + neutral + bad)
+            }
+          />
+          <Statistic text="positive" value={`${(good / (good + neutral + bad)) * 100} %`} />
+        </tbody>
+      </table>
     </div>
   );
 };
