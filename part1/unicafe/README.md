@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+_This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)._
 
-## Available Scripts
+## Exercises 1.6.-1.11.
 
-In the project directory, you can run:
+Run the exercise with:
 
 ### `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Step 1
 
-### `npm test`
+Implement a web application for collecting customer feedback for Unicafe. There are only three options for feedback: _good_, _neutral_, and _bad_.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The application must display the total number of collected feedback for each category (work only during a single browser session).
 
-### `npm run build`
+## Step 2
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Expand your application so that it shows more statistics about the gathered feedback: the total number of collected feedback, the average score (good: 1, neutral: 0, bad: -1) and the percentage of positive feedback.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Step 3
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Refactor the application so that displaying the statistics is extracted into its own _Statistics_ component. The state of the application should remain in the _App_ root component.
 
-### `npm run eject`
+## Step 4
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Change the application to display statistics only once feedback has been gathered. Show _No feedback given_ in the beginning.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Step 5
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Extract the following two components:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- _Button_ for defining the buttons used for submitting feedback
+- _Statistic_ for displaying a single statistic, e.g. the average score.
 
-## Learn More
+To be clear: the _Statistic_ component always displays a single statistic, meaning that the application uses multiple components for rendering all of the statistics.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The application's state should still be kept in the root _App_ component.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Step 6
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Display the statistics in an _HTML table_
