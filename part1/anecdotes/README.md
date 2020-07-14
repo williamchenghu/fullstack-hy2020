@@ -16,3 +16,9 @@ Initiate Anecdotes app, expand it by adding a button that can be clicked to disp
 ## Step 2
 
 Expand the application with _vote_ for the displayed anecdote. Store the votes of each anecdote into an array.
+
+## Step 3
+
+Displays the anecdote with the largest number of votes.
+
+If multiple anecdotes are tied for first place it is sufficient to just show one of them.

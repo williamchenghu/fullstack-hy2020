@@ -10,20 +10,25 @@ const RandomIndex = () => Math.floor(Math.random() * anecdotes.length);
 const App = ({ anecdotes }) => {
   const [selected, setSelected] = useState(0);
   const [volted, setVolted] = useState(Votes());
+  const voltUpdate = [...volted];
+  const highestVoltIndex = voltUpdate.indexOf(Math.max(...voltUpdate));
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
       <p>has {volted[selected]} votes</p>
       <Button
         text={'vote'}
         isClicked={() => {
-          const voltUpdate = [...volted];
           voltUpdate[selected] += 1;
           setVolted(voltUpdate);
         }}
       />
       <Button text={'next anecdote'} isClicked={() => setSelected(RandomIndex())} />
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[highestVoltIndex]}</p>
+      <p>has {volted[highestVoltIndex]} votes</p>
     </div>
   );
 };
