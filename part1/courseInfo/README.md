@@ -38,3 +38,7 @@ Hence, the _Course_ component contains the components defined in the previous pa
 The application must work _regardless of the number of parts a course has_, so make sure the application works if you add or remove parts of a course.
 
 Ensure that the console shows no errors!
+
+## Step 7
+
+Show also the sum of the exercises of the course.

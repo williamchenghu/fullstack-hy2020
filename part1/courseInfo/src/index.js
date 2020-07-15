@@ -5,10 +5,10 @@ const Header = ({ courseName }) => {
   return <h1>{courseName}</h1>;
 };
 
-/* const Total = ({ course }) => {
-  const sum = course.parts[0].exercises + course.parts[1].exercises + course.parts[2].exercises;
-  return <p>Number of exercises {sum}</p>;
-}; */
+const Total = ({ parts }) => {
+  const totalExercises = parts.reduce((sum, e) => sum + e.exercises, 0);
+  return <b>total of {totalExercises} exercises</b>;
+};
 
 const Part = ({ part }) => {
   return (
@@ -33,6 +33,7 @@ const Course = ({ course }) => {
     <div>
       <Header courseName={course.name} />
       <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   );
 };
@@ -56,6 +57,11 @@ const App = () => {
         name: 'State of a component',
         exercises: 14,
         id: 3,
+      },
+      {
+        name: 'Redux',
+        exercises: 11,
+        id: 4,
       },
     ],
   };
