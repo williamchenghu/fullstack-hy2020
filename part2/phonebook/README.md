@@ -25,3 +25,7 @@ Let us start with implementing the addition of a person to phonebook.
 Prevent the user from being able to add names that already exist in the phonebook.
 
 Issue a warning with the alert command when such an action is attempted.
+
+## Step 3
+
+Expand the application by allowing users to add phone numbers to the phone book. You will need to add a second _input_ element to the form (along with its own event handler).
