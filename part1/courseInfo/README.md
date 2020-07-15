@@ -95,3 +95,7 @@ Extend the application to allow for an arbitrary number of courses:
         ]
         }
     ]
+
+## Exercise 2.5.
+
+Declare the _Course_ component as a separate module, which is imported by the _App_ component. Include all subcomponents of the course into the same module.
