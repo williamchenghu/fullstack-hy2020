@@ -19,3 +19,9 @@ Let us start with implementing the addition of a person to phonebook.
 
 - you can use the person's name as value of the _key_ property
 - remember to prevent the default action of submitting HTML forms!
+
+## Step 2
+
+Prevent the user from being able to add names that already exist in the phonebook.
+
+Issue a warning with the alert command when such an action is attempted.
