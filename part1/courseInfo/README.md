@@ -46,3 +46,52 @@ Show also the sum of the exercises of the course.
 ## Step 8
 
 Calculate the sum of exercises with the array method _reduce_.
+
+## Step 9
+
+Extend the application to allow for an arbitrary number of courses:
+
+    const courses = [
+        {
+        name: 'Half Stack application development',
+        id: 1,
+        parts: [
+            {
+            name: 'Fundamentals of React',
+            exercises: 10,
+            id: 1
+            },
+            {
+            name: 'Using props to pass data',
+            exercises: 7,
+            id: 2
+            },
+            {
+            name: 'State of a component',
+            exercises: 14,
+            id: 3
+            },
+            {
+            name: 'Redux',
+            exercises: 11,
+            id: 4
+            }
+        ]
+        },
+        {
+        name: 'Node.js',
+        id: 2,
+        parts: [
+            {
+            name: 'Routing',
+            exercises: 3,
+            id: 1
+            },
+            {
+            name: 'Middlewares',
+            exercises: 7,
+            id: 2
+            }
+        ]
+        }
+    ]
