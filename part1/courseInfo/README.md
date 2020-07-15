@@ -42,3 +42,7 @@ Ensure that the console shows no errors!
 ## Step 7
 
 Show also the sum of the exercises of the course.
+
+## Step 8
+
+Calculate the sum of exercises with the array method _reduce_.
