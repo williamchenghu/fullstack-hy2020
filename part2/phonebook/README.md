@@ -29,3 +29,9 @@ Issue a warning with the alert command when such an action is attempted.
 ## Step 3
 
 Expand the application by allowing users to add phone numbers to the phone book. You will need to add a second _input_ element to the form (along with its own event handler).
+
+## Step 4
+
+Implement a search field that can be used to filter the list of people by name.
+
+Implement the search field as an input element that is placed outside the HTML form. The filtering logic shown in the image is _case insensitive_, meaning that the search term arto also returns results that contain Arto with an uppercase A.
