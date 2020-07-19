@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import Fields from './components/Fields';
+import PersonForm from './components/PersonForm';
+import Persons from './components/Persons';
 
 const App = () => {
+  //States
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456' },
     { name: 'Ada Lovelace', number: '39-44-5323523' },
@@ -11,10 +15,10 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('');
   const [newFilter, setNewFilter] = useState('');
 
+  //Event handlers
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);
   const handleFilterChange = (event) => setNewFilter(event.target.value);
-
   const addPerson = (event) => {
     event.preventDefault();
     const personObject = {
@@ -28,32 +32,24 @@ const App = () => {
     setNewNumber('');
   };
 
-  const fields = (fieldName, newField, handleFieldChange) => (
-    <div>
-      {fieldName}: <input value={newField} onChange={handleFieldChange} />
-    </div>
-  );
-
   return (
     <div>
       <h2>Phonebook</h2>
-      {fields('filter shown with', newFilter, handleFilterChange)}
-      <h2>add a new</h2>
-      <form onSubmit={addPerson}>
-        {fields('name', newName, handleNameChange)}
-        {fields('number', newNumber, handleNumberChange)}
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <Fields
+        fieldName="filter shown with"
+        newField={newFilter}
+        handleFieldChange={handleFilterChange}
+      />
+      <h2>Add a new</h2>
+      <PersonForm
+        addPerson={addPerson}
+        addName={newName}
+        addNumber={newNumber}
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
+      />
       <h2>Numbers</h2>
-      {persons
-        .filter((e) => e.name.toLowerCase().includes(newFilter.toLowerCase()))
-        .map((e) => (
-          <div key={e.name}>
-            {e.name} {e.number}
-          </div>
-        ))}
+      <Persons personList={persons} filterKey={newFilter} />
     </div>
   );
 };

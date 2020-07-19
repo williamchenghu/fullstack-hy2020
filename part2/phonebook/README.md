@@ -35,3 +35,7 @@ Expand the application by allowing users to add phone numbers to the phone book.
 Implement a search field that can be used to filter the list of people by name.
 
 Implement the search field as an input element that is placed outside the HTML form. The filtering logic shown in the image is _case insensitive_, meaning that the search term arto also returns results that contain Arto with an uppercase A.
+
+## Step 5
+
+Refactor the application by extracting suitable parts into new components. Maintain the application's state and all event handlers in the _App_ root component. It is sufficient to extract **_three_** components from the application.
