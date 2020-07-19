@@ -1,6 +1,6 @@
 _This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)._
 
-## Exercises 2.6.-2.14.
+## Exercises 2.6.-2.11.
 
 Run the exercise with:
 
