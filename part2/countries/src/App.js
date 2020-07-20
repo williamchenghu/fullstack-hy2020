@@ -15,7 +15,6 @@ const App = () => {
       setCountries(response.data);
     });
   }, []);
-  console.log('fetched', countries.length, 'countries');
 
   //Event handlers
   const handleSearchChange = (event) => setSearch(event.target.value);
@@ -27,7 +26,7 @@ const App = () => {
         newField={search}
         handleFieldChange={handleSearchChange}
       />
-      <Countries countriesList={countries} filterKey={search} />
+      <Countries countriesList={countries} filterKey={search} handelShowCountry={setSearch} />
     </>
   );
 };

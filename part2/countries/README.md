@@ -22,3 +22,7 @@ If there are too many (over 10) countries that match the query, then the user is
 If there are ten or fewer countries, but more than one, then all countries matching the query are shown
 
 When there is only one country matching the query, then the basic data of the country, its flag and the languages spoken there, are shown
+
+## Step 2
+
+Improve the application so that when the names of multiple countries are shown on the page there is a button next to the name of the country, which when pressed shows the view for that country

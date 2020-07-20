@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Countries = ({ countriesList, filterKey }) => {
+const Countries = ({ countriesList, filterKey, handelShowCountry }) => {
   const filterCountries = countriesList.filter((e) =>
     e.name.toLowerCase().includes(filterKey.toLowerCase())
   );
@@ -11,7 +11,11 @@ const Countries = ({ countriesList, filterKey }) => {
       {filterResult > 10 ? (
         <div>Too many matches, specify another filter</div>
       ) : filterResult > 1 ? (
-        filterCountries.map((e) => <div key={e.name}>{e.name}</div>)
+        filterCountries.map((e) => (
+          <div key={e.name}>
+            {e.name} <button onClick={() => handelShowCountry(e.name)}>show</button>
+          </div>
+        ))
       ) : (
         (console.log('filterResult', filterCountries),
         filterResult > 0 && (
