@@ -9,11 +9,25 @@ const App = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    console.log('start fetching data');
-    axios.get('https://restcountries.eu/rest/v2/all').then((response) => {
-      console.log('promise fulfilled');
-      setCountries(response.data);
-    });
+    const source = axios.CancelToken.source();
+    const fetchCountries = async () => {
+      try {
+        await axios
+          .get('https://restcountries.eu/rest/v2/all', { cancelToken: source.token })
+          .then((response) => setCountries(response.data));
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          console.log('Fetching countries is cancelled');
+        } else {
+          throw error;
+        }
+      }
+    };
+
+    fetchCountries();
+    return () => {
+      source.cancel();
+    };
   }, []);
 
   //Event handlers

@@ -26,3 +26,9 @@ When there is only one country matching the query, then the basic data of the co
 ## Step 2
 
 Improve the application so that when the names of multiple countries are shown on the page there is a button next to the name of the country, which when pressed shows the view for that country
+
+## Step 3
+
+Add to the view showing the data of a single country, the weather report for the capital of that country. There are dozens of providers for weather data. I used https://weatherstack.com/.
+
+**NB:** You need an api-key to use almost every weather service. Do not save the api-key to source control! Nor hardcode the api-key to your source code. Instead use an environment variable to save the key.

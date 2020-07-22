@@ -1,4 +1,5 @@
 import React from 'react';
+import CountryDetails from './CountryDetails';
 
 const Countries = ({ countriesList, filterKey, handelShowCountry }) => {
   const filterCountries = countriesList.filter((e) =>
@@ -8,35 +9,16 @@ const Countries = ({ countriesList, filterKey, handelShowCountry }) => {
 
   return (
     <>
-      {filterResult > 10 ? (
-        <div>Too many matches, specify another filter</div>
-      ) : filterResult > 1 ? (
+      {filterResult > 10 && <div>Too many matches, specify another filter</div>}
+      {filterResult > 1 &&
+        filterResult < 11 &&
         filterCountries.map((e) => (
           <div key={e.name}>
             {e.name} <button onClick={() => handelShowCountry(e.name)}>show</button>
           </div>
-        ))
-      ) : (
-        (console.log('filterResult', filterCountries),
-        filterResult > 0 && (
-          <>
-            <h1>{filterCountries[0].name}</h1>
-            <div>capital {filterCountries[0].capital}</div>
-            <div>population {filterCountries[0].population}</div>
-            <h3>languages</h3>
-            <ul>
-              {filterCountries[0].languages.map((e) => (
-                <li key={e.name}>{e.name}</li>
-              ))}
-            </ul>
-            <img
-              src={filterCountries[0].flag}
-              alt={`flag of ${filterCountries[0].name}`}
-              style={{ maxWidth: '20%' }}
-            />
-          </>
-        ))
-      )}
+        ))}
+      {filterResult === 1 && <CountryDetails countryToShow={filterCountries[0]} />}
+      {filterResult < 1 && <div>No country found</div>}
     </>
   );
 };
