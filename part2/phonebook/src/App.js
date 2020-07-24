@@ -39,6 +39,10 @@ const App = () => {
     setNewNumber('');
   };
 
+  const deletePerson = (id) =>
+    window.confirm(`Delete ${persons.find((e) => id === e.id).name} ?`) &&
+    (dataAPI.deleteEntry(id), setPersons(persons.filter((e) => e.id !== id)));
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -56,7 +60,11 @@ const App = () => {
         handleNumberChange={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <Persons personList={persons} filterKey={newFilter} />
+      <Persons
+        personList={persons}
+        filterKey={newFilter}
+        deletePerson={deletePerson}
+      />
     </div>
   );
 };

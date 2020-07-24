@@ -24,6 +24,8 @@ const update = (id, newObject) => {
   return request.then((response) => response.data);
 };
 
+const deleteEntry = (id) => axios.delete(`${baseURL}/${id}`);
+
 const cancelToken = () => source.cancel();
 
-export default { getAll, create, update, cancelToken };
+export default { getAll, create, update, deleteEntry, cancelToken };

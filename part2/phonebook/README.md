@@ -53,3 +53,9 @@ Update the app so that the numbers that are added to the phonebook are saved to 
 ## Step 8
 
 Extract the code that handles the communication with the backend into its own module (src/services/data.js)
+
+## Step 9
+
+Make it possible for users to delete entries from the phonebook. The deletion can be done through a dedicated button for each person in the phonebook list. You can confirm the action from the user by using the _window.confirm_ method.
+
+The associated resource for a person in the backend can be deleted by making an HTTP DELETE request to the resource's URL.
