@@ -45,3 +45,11 @@ Refactor the application by extracting suitable parts into new components. Maint
 Store the initial state of the application in the file _db.json_, which should be placed in the root of the project.
 
 Modify the application such that the initial state of the data is fetched from the server using the _axios_-library. Complete the fetching with an Effect hook.
+
+## Step 7
+
+Update the app so that the numbers that are added to the phonebook are saved to a backend server.
+
+## Step 8
+
+Extract the code that handles the communication with the backend into its own module (src/services/data.js)

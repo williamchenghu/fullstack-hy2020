@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Fields from './components/Fields';
 import PersonForm from './components/PersonForm';
 import Persons from './components/Persons';
+import dataAPI from './services/data';
 
 const App = () => {
   //States
@@ -10,20 +10,20 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [newFilter, setNewFilter] = useState('');
-
-  useEffect(() => {
-    console.log('effect');
-    axios.get('http://localhost:3001/persons').then((response) => {
-      console.log('promise fulfilled');
-      setPersons(response.data);
-    });
-  }, []);
-  console.log('render', persons.length, 'persons');
-
   //Event handlers
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);
   const handleFilterChange = (event) => setNewFilter(event.target.value);
+
+  useEffect(() => {
+    const fetchPersons = async () => {
+      await dataAPI.getAll().then((initialData) => setPersons(initialData));
+    };
+
+    fetchPersons();
+    return () => dataAPI.cancelToken();
+  }, []);
+
   const addPerson = (event) => {
     event.preventDefault();
     const personObject = {
@@ -32,7 +32,9 @@ const App = () => {
     };
     persons.find((e) => newName === e.name)
       ? alert(`${newName} is already added to phonebook`)
-      : setPersons(persons.concat(personObject));
+      : dataAPI
+          .create(personObject)
+          .then((returnedData) => setPersons(persons.concat(returnedData)));
     setNewName('');
     setNewNumber('');
   };
