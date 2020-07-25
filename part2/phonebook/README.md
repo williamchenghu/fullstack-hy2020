@@ -59,3 +59,7 @@ Extract the code that handles the communication with the backend into its own mo
 Make it possible for users to delete entries from the phonebook. The deletion can be done through a dedicated button for each person in the phonebook list. You can confirm the action from the user by using the _window.confirm_ method.
 
 The associated resource for a person in the backend can be deleted by making an HTTP DELETE request to the resource's URL.
+
+## Step 10
+
+Change the functionality so that if a number is added to an already existing user, the new number will replace the old number by confirming the action from the user. It's recommended to use the HTTP PUT method for updating the phone number.

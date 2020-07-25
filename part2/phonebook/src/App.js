@@ -30,8 +30,19 @@ const App = () => {
       name: newName,
       number: newNumber,
     };
-    persons.find((e) => newName === e.name)
-      ? alert(`${newName} is already added to phonebook`)
+    const matchPerson = persons.find((e) => newName === e.name);
+
+    matchPerson
+      ? window.confirm(
+          `${matchPerson.name} is already added to phonebook, replace the old number with a new one?`
+        ) &&
+        dataAPI
+          .update(matchPerson.id, { ...matchPerson, number: newNumber })
+          .then((returnedData) =>
+            setPersons(
+              persons.map((e) => (e.id !== matchPerson.id ? e : returnedData))
+            )
+          )
       : dataAPI
           .create(personObject)
           .then((returnedData) => setPersons(persons.concat(returnedData)));
