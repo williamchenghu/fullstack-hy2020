@@ -15,15 +15,15 @@ const messagePositive = {
   marginBottom: 10,
 };
 
-// const messageNegative = {
-//   color: 'red',
-//   background: 'lightgrey',
-//   fontSize: 20,
-//   borderStyle: 'solid',
-//   borderRadius: 5,
-//   padding: 10,
-//   marginBottom: 10,
-// };
+const messageNegative = {
+  color: 'red',
+  background: 'lightgrey',
+  fontSize: 20,
+  borderStyle: 'solid',
+  borderRadius: 5,
+  padding: 10,
+  marginBottom: 10,
+};
 
 const App = () => {
   //States
@@ -66,6 +66,16 @@ const App = () => {
               persons.map((e) => (e.id !== matchPerson.id ? e : returnedData))
             )
           )
+          .catch((error) => {
+            setMessageStyle(messageNegative);
+            setMessage(
+              `Information of ${matchPerson.name} has already been removed from server`
+            );
+            setTimeout(() => {
+              setMessage(null);
+            }, 3000);
+            setPersons(persons.filter((e) => e.id !== matchPerson.id));
+          })
       : dataAPI.create(personObject).then((returnedData) => {
           setPersons(persons.concat(returnedData));
           console.log('returnedName', returnedData.name);
