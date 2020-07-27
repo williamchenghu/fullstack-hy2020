@@ -63,3 +63,7 @@ The associated resource for a person in the backend can be deleted by making an 
 ## Step 10
 
 Change the functionality so that if a number is added to an already existing user, the new number will replace the old number by confirming the action from the user. It's recommended to use the HTTP PUT method for updating the phone number.
+
+## Step 11
+
+Use the improved error message example from part 2 as a guide to show a notification that lasts for a few seconds after a successful operation is executed (a person is added or a number is changed)

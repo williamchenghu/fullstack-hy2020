@@ -2,7 +2,28 @@ import React, { useState, useEffect } from 'react';
 import Fields from './components/Fields';
 import PersonForm from './components/PersonForm';
 import Persons from './components/Persons';
+import Notification from './components/Notification';
 import dataAPI from './services/data';
+
+const messagePositive = {
+  color: 'green',
+  background: 'lightgrey',
+  fontSize: 20,
+  borderStyle: 'solid',
+  borderRadius: 5,
+  padding: 10,
+  marginBottom: 10,
+};
+
+// const messageNegative = {
+//   color: 'red',
+//   background: 'lightgrey',
+//   fontSize: 20,
+//   borderStyle: 'solid',
+//   borderRadius: 5,
+//   padding: 10,
+//   marginBottom: 10,
+// };
 
 const App = () => {
   //States
@@ -10,6 +31,8 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [newFilter, setNewFilter] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageStyle, setMessageStyle] = useState({});
   //Event handlers
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);
@@ -43,9 +66,15 @@ const App = () => {
               persons.map((e) => (e.id !== matchPerson.id ? e : returnedData))
             )
           )
-      : dataAPI
-          .create(personObject)
-          .then((returnedData) => setPersons(persons.concat(returnedData)));
+      : dataAPI.create(personObject).then((returnedData) => {
+          setPersons(persons.concat(returnedData));
+          console.log('returnedName', returnedData.name);
+          setMessageStyle(messagePositive);
+          setMessage(`Added ${returnedData.name}`);
+          setTimeout(() => {
+            setMessage(null);
+          }, 1500);
+        });
     setNewName('');
     setNewNumber('');
   };
@@ -57,6 +86,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} messageStyle={messageStyle} />
       <Fields
         fieldName="filter shown with"
         newField={newFilter}
