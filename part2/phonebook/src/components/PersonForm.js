@@ -2,13 +2,13 @@ import React from 'react';
 import Fields from './Fields';
 
 const PersonForm = ({
-  addPerson,
+  updatePhonebook,
   addName,
   addNumber,
   handleNameChange,
   handleNumberChange,
 }) => (
-  <form onSubmit={addPerson}>
+  <form onSubmit={updatePhonebook}>
     <Fields
       fieldName="name"
       newField={addName}

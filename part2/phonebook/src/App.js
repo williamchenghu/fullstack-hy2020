@@ -37,6 +37,13 @@ const App = () => {
   const handleNameChange = (event) => setNewName(event.target.value);
   const handleNumberChange = (event) => setNewNumber(event.target.value);
   const handleFilterChange = (event) => setNewFilter(event.target.value);
+  const styledMessage = (style, message) => {
+    setMessageStyle(style);
+    setMessage(message);
+    setTimeout(() => {
+      setMessage(null);
+    }, 2000);
+  };
 
   useEffect(() => {
     const fetchPersons = async () => {
@@ -47,46 +54,66 @@ const App = () => {
     return () => dataAPI.cancelToken();
   }, []);
 
-  const addPerson = (event) => {
-    event.preventDefault();
-    const personObject = {
-      name: newName,
-      number: newNumber,
-    };
-    const matchPerson = persons.find((e) => newName === e.name);
+  const missingInput = () =>
+    styledMessage(messageNegative, 'Missing Name or Number to add the person');
 
-    matchPerson
-      ? window.confirm(
-          `${matchPerson.name} is already added to phonebook, replace the old number with a new one?`
-        ) &&
-        dataAPI
-          .update(matchPerson.id, { ...matchPerson, number: newNumber })
-          .then((returnedData) =>
-            setPersons(
-              persons.map((e) => (e.id !== matchPerson.id ? e : returnedData))
-            )
+  const editPerson = (existingPerson) => {
+    if (
+      window.confirm(
+        `${existingPerson.name} is already added to phonebook, replace the old number with a new one?`
+      )
+    ) {
+      return dataAPI
+        .update(existingPerson.id, { ...existingPerson, number: newNumber })
+        .then((returnedData) =>
+          setPersons((persons) =>
+            persons.map((e) => (e.id !== existingPerson.id ? e : returnedData))
           )
-          .catch((error) => {
-            setMessageStyle(messageNegative);
-            setMessage(
-              `Information of ${matchPerson.name} has already been removed from server`
-            );
-            setTimeout(() => {
-              setMessage(null);
-            }, 3000);
-            setPersons(persons.filter((e) => e.id !== matchPerson.id));
-          })
-      : dataAPI.create(personObject).then((returnedData) => {
-          setPersons(persons.concat(returnedData));
-          console.log('returnedName', returnedData.name);
-          setMessageStyle(messagePositive);
-          setMessage(`Added ${returnedData.name}`);
-          setTimeout(() => {
-            setMessage(null);
-          }, 1500);
+        )
+        .catch((error) => {
+          styledMessage(
+            messageNegative,
+            `Information of ${existingPerson.name} has already been removed from server`
+          );
+          setPersons(persons.filter((e) => e.id !== existingPerson.id));
         });
+    }
+  };
+
+  const createPerson = () => {
+    dataAPI
+      .create({
+        name: newName,
+        number: newNumber,
+      })
+      .then((returnedData) => {
+        setPersons(persons.concat(returnedData));
+        styledMessage(messagePositive, `Added ${returnedData.name}`);
+      });
+  };
+
+  const resetInput = () => {
     setNewName('');
     setNewNumber('');
+  };
+
+  const updatePhonebook = (event) => {
+    event.preventDefault();
+    // catch missing input
+    if (!newName || !newNumber) {
+      return missingInput();
+    }
+    //find match of input person from current phonebook
+    const matchPerson = persons.find((e) => newName === e.name);
+    //if input person already exists
+    if (matchPerson) {
+      editPerson(matchPerson);
+    } else {
+      //otherwise create the input person
+      createPerson();
+    }
+    //reset input fields
+    resetInput();
   };
 
   const deletePerson = (id) =>
@@ -104,7 +131,7 @@ const App = () => {
       />
       <h2>Add a new</h2>
       <PersonForm
-        addPerson={addPerson}
+        updatePhonebook={updatePhonebook}
         addName={newName}
         addNumber={newNumber}
         handleNameChange={handleNameChange}
