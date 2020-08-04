@@ -42,7 +42,7 @@ const App = () => {
     setMessage(message);
     setTimeout(() => {
       setMessage(null);
-    }, 2000);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -53,9 +53,6 @@ const App = () => {
     fetchPersons();
     return () => dataAPI.cancelToken();
   }, []);
-
-  const missingInput = () =>
-    styledMessage(messageNegative, 'Missing Name or Number to add the person');
 
   const editPerson = (existingPerson) => {
     if (
@@ -71,10 +68,7 @@ const App = () => {
           )
         )
         .catch((error) => {
-          styledMessage(
-            messageNegative,
-            `Information of ${existingPerson.name} has already been removed from server`
-          );
+          styledMessage(messageNegative, `${error.response.data.error}`);
           setPersons(persons.filter((e) => e.id !== existingPerson.id));
         });
     }
@@ -89,6 +83,9 @@ const App = () => {
       .then((returnedData) => {
         setPersons(persons.concat(returnedData));
         styledMessage(messagePositive, `Added ${returnedData.name}`);
+      })
+      .catch((error) => {
+        styledMessage(messageNegative, `${error.response.data.error}`);
       });
   };
 
@@ -101,7 +98,10 @@ const App = () => {
     event.preventDefault();
     // catch missing input
     if (!newName || !newNumber) {
-      return missingInput();
+      return styledMessage(
+        messageNegative,
+        'Missing Name or Number to add the person'
+      );
     }
     //find match of input person from current phonebook
     const matchPerson = persons.find((e) => newName === e.name);
