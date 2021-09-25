@@ -1,15 +1,15 @@
-title New Note & Submit
+title New Note & Submit 2021
 
-Browser->Server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
 Server-->Browser: 302 Found (URL redirect)
 
-Browser->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
 Server-->Browser: HTML-code
 
-Browser->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
 Server-->Browser: main.css
 
-Browser->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
 Server-->Browser: main.js
 
 note over Browser: 
@@ -17,8 +17,8 @@ Browser starts executing js-code
 that requests JSON data from Server
 end note
 
-Browser->Server: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
-Server-->Browser: [{content: "HTML is easy", date: "2019-05-23T17:30:31.098Z"},…]
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: [{"content":"Jamiu was here","date":"2021-09-25T01:37:08.905Z"},…]
 
 note over Browser: 
 Browser executes the event handler
