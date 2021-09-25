@@ -1,10 +1,10 @@
-title SPA New Note
+title SPA New Note 2021
 
-Browser->Server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
 
 note over Server: 
-Content-Type: JSON (with note and timestamp)
-{content: "nani?", date: "2020-07-10T16:08:25.485Z"}
+content-type: application/json
+{content: "testitest", date: "2021-09-25T15:50:24.931Z"}
 end note
 
 Server-->Browser: 201 Created
